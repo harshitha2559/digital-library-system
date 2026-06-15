@@ -10,6 +10,14 @@ function Welcome({ onStart }) {
           <span className="welcome-label">DIGITAL LIBRARY PROJECT</span>
 
           <h1>Digital Library</h1>
+          <div style={{marginTop: "20px"}}>
+  <h3>Team Members</h3>
+
+  <p>Harshitha</p>
+  <p>pruthvika</p>
+  <p>Nhikitha</p>
+  
+</div>
 
           <div className="welcome-line"></div>
 
