@@ -16,8 +16,9 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {"message":"FastAPI Gateway Running"}
+    return {"message": "FastAPI Gateway Running"}
 
+# Get all books
 @app.get("/api/books")
 def get_books():
     response = requests.get(
@@ -25,10 +26,10 @@ def get_books():
     )
     return response.json()
 
-
-
+# Add book
 @app.post("/api/books")
 async def add_book(request: Request):
+
     data = await request.json()
 
     response = requests.post(
@@ -37,6 +38,8 @@ async def add_book(request: Request):
     )
 
     return response.json()
+
+# Delete book
 @app.delete("/api/books/{id}")
 async def delete_book(id: int):
 
@@ -46,7 +49,22 @@ async def delete_book(id: int):
 
     return response.json()
 
-    if response.status_code == 200:
-        return response.json()
+# Borrow book
+@app.get("/api/books/borrow/{id}")
+def borrow_book(id: int):
 
-    return {"error": "Invalid Email or Password"}
+    response = requests.get(
+        f"{SPRING_BOOT_URL}/api/books/borrow/{id}"
+    )
+
+    return response.text
+
+# Return book
+@app.get("/api/books/return/{id}")
+def return_book(id: int):
+
+    response = requests.get(
+        f"{SPRING_BOOT_URL}/api/books/return/{id}"
+    )
+
+    return response.text
